@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.190",
     "daisyui": "^2.41.0",
     "react": "^18.0.0-rc.3",
     "react-dom": "^18.0.0-rc.3",
+    "react-loading-skeleton": "^3.1.0",
     "react-responsive-carousel": "^3.2.23",
     "recoil": "^0.7.6"
   },

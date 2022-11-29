@@ -58,7 +58,7 @@ export default function Main(props: MainProps) {
       </section>
 
       {/* 프로덕트 카드 섹션 */}
-      <section className="flex flex-col items-center">
+      <section className="w-3/4 mx-auto">
         {props.categories.map((category) => (
           <section key={category.name}>
             <h2 className="flex justify-center">{category.name}</h2>

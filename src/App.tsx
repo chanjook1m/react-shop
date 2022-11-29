@@ -11,6 +11,8 @@ import ProductList from "./pages/ProductList";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 
+import SkeletonCard from "./components/skeleton/MainSkeletonCard";
+
 const categories = [
   { path: "/fashion", name: "패션", keyword: "clothing" },
   { path: "/accessory", name: "엑세서리", keyword: "jewelery" },
@@ -32,6 +34,7 @@ interface ProductInfo {
 
 function App() {
   const [data, setData] = useState<ProductInfo[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const getLimitedData = (category: string, num: number) => {
     let ctgry = category === "clothing" ? "men's clothing" : category;
@@ -39,6 +42,7 @@ function App() {
       .then((res) => res.json())
       .then((newData) => {
         setData((prev) => [...prev, ...newData].sort((a, b) => a.id - b.id));
+        setLoading(false);
       })
       .catch((err) => console.log(err));
   };
@@ -58,6 +62,7 @@ function App() {
   };
 
   useEffect(() => {
+    setLoading(true);
     categories.map((category) => getLimitedData(category.keyword, 4));
     // login();
   }, []);
@@ -70,15 +75,22 @@ function App() {
           <BrowserRouter>
             <Header categories={categories} />
             <Routes>
-              <Route
-                path="/"
-                element={<Main categories={categories} data={data} />}
-              />
+              {loading && <Route path="/" element={<SkeletonCard />} />}
+              {!loading && (
+                <Route
+                  path="/"
+                  element={<Main categories={categories} data={data} />}
+                />
+              )}
 
               {categories.map((category) => (
                 <Route
                   path={category.path}
-                  element={<ProductList category={category.keyword} />}
+                  element={
+                    <ProductList category={category.keyword}>
+                      {category.name}
+                    </ProductList>
+                  }
                 />
               ))}
 
