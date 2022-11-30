@@ -88,16 +88,22 @@ export default function Header(props: HeaderProps) {
               >
                 <ul className="flex flex-col">
                   {data &&
-                    data.map((ele) => (
-                      <li
-                        key={ele.title}
-                        className="p-5 hover:bg-[lightgray] rounded"
-                      >
-                        <Link className="w-full h-full  line-clamp-2">
-                          {ele.title}
-                        </Link>
-                      </li>
-                    ))}
+                    data.map(
+                      (ele) =>
+                        ele.title.indexOf(query) >= 0 && (
+                          <li
+                            key={ele.title}
+                            className="p-5 hover:bg-[lightgray] rounded"
+                          >
+                            <Link
+                              to={`/product/${ele.id}`}
+                              className="w-full h-full  line-clamp-2"
+                            >
+                              {ele.title}
+                            </Link>
+                          </li>
+                        )
+                    )}
                 </ul>
               </div>
             </li>
