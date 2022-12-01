@@ -180,7 +180,9 @@ export default function Cart(props: CartProps) {
                     >
                       -
                     </button>
-                    <button disabled>{ele.quantity}</button>
+                    <button disabled className="font-bold">
+                      {ele.quantity}
+                    </button>
                     <button
                       onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                         onButtonClicked(e, ele);
