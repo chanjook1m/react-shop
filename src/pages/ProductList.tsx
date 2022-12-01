@@ -73,21 +73,20 @@ export default function ProductList(props: ProductListProps) {
             {data.map((item) => {
               return (
                 <Link
-                  className="flex flex-col items-center justify-center"
-                  style={{ height: "fit-content" }}
+                  className="flex xl:w-64 lg:w-48 h-96 flex-col items-center justify-center border border-b border-[lightgray] border-solid rounded-lg"
                   to={`/product/${item.id}`}
                   key={item.id}
                 >
-                  <figure className="w-full h-80 flex items-center justify-center">
+                  <figure className="w-full h-96 flex items-center justify-center hover:scale-125 duration-500">
                     <img
                       src={item.image}
                       alt=""
-                      style={{ maxWidth: "30%", maxHeight: "30%" }}
+                      style={{ maxWidth: "50%", maxHeight: "50%" }}
                     />
                   </figure>
-                  <div className="">
-                    <p>{item.title}</p>
-                    <p>{item.price}</p>
+                  <div className="flex flex-col justify-between w-full h-64 leading-normal p-3 bg-[lightgray]">
+                    <p className="font-black">{item.title}</p>
+                    <p>${item.price}</p>
                   </div>
                 </Link>
               );
