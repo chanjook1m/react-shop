@@ -146,61 +146,68 @@ export default function Cart(props: CartProps) {
     //   .catch((err) => console.log(err));
   }, []);
   return (
-    <div className="p-20">
-      <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-12 w-full">
+    <section className="pt-24 pb-80">
+      <section className="flex w-3/4 gap-36 pl-24 mt-24">
         <ul>
           {cart.map((ele) => (
             <li key={ele.id}>
-              <Link
-                className="flex flex-col items-center justify-center"
-                style={{ height: "fit-content" }}
-                to={`/product/${ele.id}`}
-                key={ele.id}
-              >
-                <figure className="w-full h-80 flex items-center justify-center">
-                  <img
-                    src={ele.image}
-                    alt=""
-                    style={{ maxWidth: "30%", maxHeight: "30%" }}
-                  />
-                </figure>
-                <div className="">
-                  <p>{ele.title}</p>
-                  <p>{ele.price}</p>
+              <div className="flex items-center gap-24">
+                <Link
+                  className="flex flex-col items-center justify-center"
+                  style={{ height: "fit-content" }}
+                  to={`/product/${ele.id}`}
+                  key={ele.id}
+                >
+                  <figure className="w-56 h-80 flex items-center justify-center">
+                    <img
+                      src={ele.image}
+                      alt=""
+                      style={{ maxWidth: "80%", maxHeight: "80%" }}
+                    />
+                  </figure>
+                </Link>
+                <div className="flex flex-col gap-5">
+                  <div className="font-black leading-normal text-lg">
+                    <p>{ele.title}</p>
+                    <p className="text-2xl font-bold">${ele.price}</p>
+                  </div>
+                  <div className="flex gap-5">
+                    <button
+                      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                        onButtonClicked(e, ele);
+                      }}
+                      className="bg-blue-700 p-3 text-white rounded-l-md hover:bg-blue-900"
+                    >
+                      -
+                    </button>
+                    <button disabled>{ele.quantity}</button>
+                    <button
+                      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                        onButtonClicked(e, ele);
+                      }}
+                      className="bg-blue-700 p-3 text-white rounded-r-md mr-12 hover:bg-blue-900"
+                    >
+                      +
+                    </button>
+                    <button
+                      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                        onButtonClicked(e, ele);
+                      }}
+                      className="border border-black hover:bg-black hover:text-white p-3"
+                    >
+                      삭제
+                    </button>
+                  </div>
                 </div>
-              </Link>
-              <div className="flex justify-center">
-                <button
-                  onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                    onButtonClicked(e, ele);
-                  }}
-                >
-                  -
-                </button>
-                <button disabled>{ele.quantity}</button>
-                <button
-                  onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                    onButtonClicked(e, ele);
-                  }}
-                >
-                  +
-                </button>
               </div>
-              <button
-                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                  onButtonClicked(e, ele);
-                }}
-              >
-                삭제
-              </button>
             </li>
           ))}
         </ul>
-        <div className="pt-24">
+        <div className="h-full w-1/4 pt-24 text-2xl font-bold">
           {/* <p>total: {getTotalQuantity()} </p> */}
           <p>총 : ${getTotalPrice()} </p>
           <button
-            className="mt-4"
+            className="mt-4 bg-blue-700 p-3 text-white rounded hover:bg-blue-900"
             onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               setCart([]);
             }}
@@ -208,7 +215,7 @@ export default function Cart(props: CartProps) {
             구매하기
           </button>
         </div>
-      </div>
-    </div>
+      </section>
+    </section>
   );
 }
