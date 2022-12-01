@@ -29,7 +29,7 @@ const API_URL = "https://fakestoreapi.com/products";
 
 export default function Main(props: MainProps) {
   return (
-    <main className="pt-12 w-full object-contain">
+    <main className="pt-12 pb-80 w-full object-contain">
       {/* 캐러셀 섹션 */}
       <section className="w-auto ">
         <Carousel
@@ -58,10 +58,10 @@ export default function Main(props: MainProps) {
       </section>
 
       {/* 프로덕트 카드 섹션 */}
-      <section className="w-3/4 mx-auto">
+      <section className="w-3/4 mx-auto ">
         {props.categories.map((category) => (
           <section key={category.name}>
-            <h2 className="flex justify-center">{category.name}</h2>
+            <h2 className="flex justify-center pt-24">{category.name}</h2>
             <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-12 w-full">
               {props.data.map((item) => {
                 if (item.category.indexOf(category.keyword as string) >= 0) {

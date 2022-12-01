@@ -35,7 +35,7 @@ export default function ProductList(props: ProductListProps) {
             Promise.all(res.map((el) => el.json())).then((json) => {
               let data = json.reduce((acc, cur) => acc.concat(cur), []);
               setData(data);
-              setLoading(false);
+              setTimeout(() => setLoading(false), 1000);
             })
           )
           .catch((err) => console.log(err));
@@ -47,7 +47,7 @@ export default function ProductList(props: ProductListProps) {
           .then((res) => res.json())
           .then((newData) => {
             setData(newData);
-            setLoading(false);
+            setTimeout(() => setLoading(false), 1000);
           })
           .catch((err) => console.log(err));
         break;

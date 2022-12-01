@@ -42,7 +42,7 @@ function App() {
       .then((res) => res.json())
       .then((newData) => {
         setData((prev) => [...prev, ...newData].sort((a, b) => a.id - b.id));
-        setLoading(false);
+        setTimeout(() => setLoading(false), 1000);
       })
       .catch((err) => console.log(err));
   };

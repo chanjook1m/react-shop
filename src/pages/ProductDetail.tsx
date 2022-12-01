@@ -1,8 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { useRecoilState } from "recoil";
 import { cartAtom } from "../atoms";
+
+import { FaStar } from "react-icons/fa";
 
 type ProductDetailProps = {
   children?: React.ReactNode;
@@ -29,6 +31,9 @@ interface CartItemInfo {
 
 const API_URL = "https://fakestoreapi.com/products";
 
+const STAR_NUM = 5;
+const starArr = new Array(STAR_NUM).fill(0);
+
 export default function ProductDetail(props: ProductDetailProps) {
   const [data, setData] = useState<ProductInfo>({
     id: 0,
@@ -40,13 +45,27 @@ export default function ProductDetail(props: ProductDetailProps) {
     rating: { rate: 0, count: 0 },
   });
   const [cart, setCart] = useRecoilState(cartAtom);
+  const [clicked, setClicked] = useState(new Array(STAR_NUM).fill(false));
 
   let productId = useParams().productId;
 
   const getData = () => {
     fetch(`${API_URL}/${productId}`)
       .then((res) => res.json())
-      .then((newData) => setData(newData))
+      .then((newData) => {
+        setData(newData);
+        return newData;
+      })
+      .then((data) => {
+        let num = Math.round(data.rating.rate);
+        let clickStates = new Array(STAR_NUM).fill(false);
+
+        for (let i = 0; i < num; i++) {
+          clickStates[i] = true;
+        }
+        console.log(clickStates);
+        setClicked(() => clickStates);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -105,14 +124,52 @@ export default function ProductDetail(props: ProductDetailProps) {
   }, [productId]);
 
   return (
-    <div>
-      <img src={data.image} alt="" />
-      <div>{data.title}</div>
-      <div>{data.description}</div>
-      <div>{data.price}</div>
-      <div>{data.rating.rate}</div>
-      <div>{data.rating.count}</div>
-      <button onClick={onButtonClicked}>장바구니에 담기</button>
-    </div>
+    <section className="pt-24 pb-80">
+      <section className="flex items-center w-full h-80 gap-36 pl-24 mt-24">
+        <img
+          style={{ maxWidth: "100%", maxHeight: "100%" }}
+          src={data.image}
+          alt=""
+        />
+        <div className="w-2/4 flex flex-col gap-5">
+          <p className="text-lg font-bold">{data.title}</p>
+          <p className="leading-normal">{data.description}</p>
+          <p>
+            <div className="flex items-center">
+              {starArr.map((el, idx) => {
+                return (
+                  <FaStar
+                    key={idx}
+                    size="20"
+                    className={clicked[idx] && "text-yellow-500"}
+                  />
+                );
+              })}
+              <span className="ml-4">
+                {data.rating.rate} / {data.rating.count}명 참여
+              </span>
+            </div>
+          </p>
+
+          <p className="text-4xl font-bold">${data.price}</p>
+          <div className="flex gap-5">
+            <button
+              className="text-sm bg-blue-700 hover:bg-blue-900 text-white p-3 rounded"
+              onClick={onButtonClicked}
+              p-12
+            >
+              장바구니에 담기
+            </button>
+            <button
+              className="text-sm p-3 rounded border border-black hover:bg-black hover:text-white"
+              onClick={onButtonClicked}
+              p-12
+            >
+              장바구니로 이동
+            </button>
+          </div>
+        </div>
+      </section>
+    </section>
   );
 }
