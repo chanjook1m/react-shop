@@ -102,7 +102,7 @@ export default function ProductDetail(props: ProductDetailProps) {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [productId]);
 
   return (
     <div>

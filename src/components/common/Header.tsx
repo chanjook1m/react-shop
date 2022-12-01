@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { useState, useMemo, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { debounce } from "lodash";
 
 interface Categories {
@@ -28,6 +28,8 @@ const API_URL = "https://fakestoreapi.com/products";
 export default function Header(props: HeaderProps) {
   const [data, setData] = useState<ProductInfo[]>([]);
   const [query, setQuery] = useState<string>("");
+  const navigate = useNavigate();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const debouncedSearch = useMemo(
     () =>
@@ -66,7 +68,12 @@ export default function Header(props: HeaderProps) {
                 if (category.name !== "")
                   return (
                     <li key={category.name}>
-                      <Link to={category.path}>{category.name}</Link>
+                      <Link
+                        to={category.path}
+                        onCLick={() => console.log("link")}
+                      >
+                        {category.name}
+                      </Link>
                     </li>
                   );
               })}
@@ -77,7 +84,12 @@ export default function Header(props: HeaderProps) {
           <ul className="flex space-x-4">
             <li>dark</li>
             <li>
-              <input type="text" placeholder="검색" onChange={onChange} />
+              <input
+                type="text"
+                placeholder="검색"
+                onChange={onChange}
+                ref={inputRef}
+              />
               <div
                 style={{
                   position: "absolute",
@@ -95,12 +107,19 @@ export default function Header(props: HeaderProps) {
                             key={ele.title}
                             className="p-5 hover:bg-[lightgray] rounded"
                           >
-                            <Link
-                              to={`/product/${ele.id}`}
-                              className="w-full h-full  line-clamp-2"
+                            <a
+                              onClick={(e) => {
+                                e.preventDefault();
+                                if (inputRef.current)
+                                  inputRef.current.value = "";
+                                setQuery("");
+                                setData([]);
+                                navigate(`/product/${ele.id}`);
+                              }}
+                              className="w-full h-full line-clamp-2 cursor-pointer"
                             >
                               {ele.title}
-                            </Link>
+                            </a>
                           </li>
                         )
                     )}
