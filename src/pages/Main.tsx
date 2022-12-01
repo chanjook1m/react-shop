@@ -41,18 +41,49 @@ export default function Main(props: MainProps) {
         >
           {/* // Todo: CarouselItem, CarouselItemDescription 컴포넌트로 나누기 */}
           <div>
-            <div className="absolute left-24 right-auto bottom-2/3 mb-10 text-left w-full text-white ">
-              <h2 className="">상품 이름</h2>
-              <p>설명</p>
-              <a className="bg-gray-500">바로가기</a>
+            <div className="absolute left-24 flex flex-col gap-5 right-auto bottom-2/3 mb-10 text-left w-64 rounded text-black font-bold">
+              <h2 className="text-4xl">새로운 상품!</h2>
+              <p>상품을 둘러보세요.</p>
+              <p>
+                <Link
+                  to="/fashion"
+                  className="bg-gray-500 p-3 rounded mt-24 text-white"
+                >
+                  바로가기
+                </Link>
+              </p>
             </div>
-            <img src="assets/2.jfif" style={{ objectFit: "contain" }} />
+            <img src="assets/1.jpg" style={{ objectFit: "contain" }} />
           </div>
           <div>
-            <img src="assets/2.jfif" />
+            <div className="absolute left-24 flex flex-col gap-5 right-auto bottom-2/3 mb-10 text-left w-64 rounded text-black font-bold">
+              <h2 className="text-4xl">새로운 상품!</h2>
+              <p>상품을 둘러보세요.</p>
+              <p>
+                <Link
+                  to="/accessory"
+                  className="bg-gray-500 p-3 rounded mt-24 text-white"
+                >
+                  바로가기
+                </Link>
+              </p>
+            </div>
+            <img src="assets/1.jpg" />
           </div>
           <div>
-            <img src="assets/2.jfif" />
+            <div className="absolute left-24 flex flex-col gap-5 right-auto bottom-2/3 mb-10 text-left w-64 rounded text-black font-bold">
+              <h2 className="text-4xl">새로운 상품!</h2>
+              <p>상품을 둘러보세요.</p>
+              <p>
+                <Link
+                  to="/digital"
+                  className="bg-gray-500 p-3 rounded mt-24 text-white"
+                >
+                  바로가기
+                </Link>
+              </p>
+            </div>
+            <img src="assets/1.jpg" />
           </div>
         </Carousel>
       </section>
