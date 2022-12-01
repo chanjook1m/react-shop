@@ -61,27 +61,28 @@ export default function Main(props: MainProps) {
       <section className="w-3/4 mx-auto ">
         {props.categories.map((category) => (
           <section key={category.name}>
-            <h2 className="flex justify-center pt-24">{category.name}</h2>
+            <h2 className="flex justify-center text-3xl font-bold pt-24 mb-5 pr-5">
+              {category.name}
+            </h2>
             <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-12 w-full">
               {props.data.map((item) => {
                 if (item.category.indexOf(category.keyword as string) >= 0) {
                   return (
                     <Link
-                      className="flex flex-col items-center justify-center"
-                      style={{ height: "fit-content" }}
+                      className="flex xl:w-64 lg:w-48 h-96 flex-col items-center justify-center border border-b border-[lightgray] border-solid rounded-lg"
                       to={`/product/${item.id}`}
                       key={item.id}
                     >
-                      <figure className="w-full h-80 flex items-center justify-center">
+                      <figure className="w-full h-96 flex items-center justify-center hover:scale-125 duration-500">
                         <img
                           src={item.image}
                           alt=""
-                          style={{ maxWidth: "30%", maxHeight: "30%" }}
+                          style={{ maxWidth: "50%", maxHeight: "50%" }}
                         />
                       </figure>
-                      <div className="">
-                        <p>{item.title}</p>
-                        <p>{item.price}</p>
+                      <div className="flex flex-col justify-between w-full h-64 leading-normal p-3 bg-[lightgray]">
+                        <p className="font-black">{item.title}</p>
+                        <p>${item.price}</p>
                       </div>
                     </Link>
                   );
