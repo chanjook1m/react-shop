@@ -29,7 +29,7 @@ const API_URL = "https://fakestoreapi.com/products";
 
 export default function Main(props: MainProps) {
   return (
-    <main className="pt-12 pb-80 w-full object-contain">
+    <main className="pt-12 w-full object-contain">
       {/* 캐러셀 섹션 */}
       <section className="w-auto ">
         <Carousel

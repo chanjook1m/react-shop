@@ -1,4 +1,12 @@
 import { Link } from "react-router-dom";
+import {
+  FaCcMastercard,
+  FaCcPaypal,
+  FaCcApplePay,
+  FaFacebook,
+  FaGithub,
+  FaInstagram,
+} from "react-icons/fa";
 
 type FooterProps = {
   children?: React.ReactNode;
@@ -6,11 +14,41 @@ type FooterProps = {
 
 export default function Footer(props: FooterProps) {
   return (
-    <footer className="w-full flex justify-center h-24">
-      <div className="w-11/12 max-w-screen-xl h-full flex items-center flex-col justify-between">
+    <footer className="flex justify-center h-24 pt-80 ">
+      <div className="w-full h-80 flex items-center flex-col pt-16 gap-10 text-lg font-bold bg-gray-300">
         <div>제로베이스</div>
-        <div>Card</div>
-        <div>SNS</div>
+        <div>
+          <ul className="flex gap-3">
+            <li>
+              <FaCcMastercard size="30" />
+            </li>
+            <li>
+              <FaCcPaypal size="30" />
+            </li>
+            <li>
+              <FaCcApplePay size="30" />
+            </li>
+          </ul>
+        </div>
+        <div>
+          <ul className="flex gap-5">
+            <li>
+              <a href="#">
+                <FaFacebook size="30" />
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <FaInstagram size="30" />
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <FaGithub size="30" />
+              </a>
+            </li>
+          </ul>
+        </div>
         <div>Copyright© 2022</div>
       </div>
     </footer>
