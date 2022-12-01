@@ -34,17 +34,17 @@ export default function Footer(props: FooterProps) {
           <ul className="flex gap-5">
             <li>
               <a href="#">
-                <FaFacebook size="30" />
+                <FaFacebook title="Facebook" size="30" />
               </a>
             </li>
             <li>
               <a href="#">
-                <FaInstagram size="30" />
+                <FaInstagram title="Instagram" size="30" />
               </a>
             </li>
             <li>
               <a href="#">
-                <FaGithub size="30" />
+                <FaGithub title="Github" size="30" />
               </a>
             </li>
           </ul>
