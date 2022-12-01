@@ -59,7 +59,6 @@ export default function ProductList(props: ProductListProps) {
   useEffect(() => {
     setLoading(true);
     getData(props.category);
-    console.log(data);
   }, [navigate]);
 
   return (

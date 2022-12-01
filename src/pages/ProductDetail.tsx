@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { cartAtom } from "../atoms";
 
+import ProductDetailSkeletonCard from "../components/skeleton/ProductDetailSkeletonCard";
+
 import { FaStar } from "react-icons/fa";
 
 interface Categories {
@@ -53,6 +55,7 @@ export default function ProductDetail(props: ProductDetailProps) {
   });
   const [cart, setCart] = useRecoilState(cartAtom);
   const [clicked, setClicked] = useState(new Array(STAR_NUM).fill(false));
+  const [loading, setLoading] = useState(false);
 
   let productId = useParams().productId;
 
@@ -70,8 +73,9 @@ export default function ProductDetail(props: ProductDetailProps) {
         for (let i = 0; i < num; i++) {
           clickStates[i] = true;
         }
-        console.log(clickStates);
+        // console.log(clickStates);
         setClicked(() => clickStates);
+        setTimeout(() => setLoading(false), 1000);
       })
       .catch((err) => console.log(err));
   };
@@ -127,6 +131,7 @@ export default function ProductDetail(props: ProductDetailProps) {
   };
 
   useEffect(() => {
+    setLoading(true);
     getData();
   }, [productId]);
 
@@ -142,52 +147,57 @@ export default function ProductDetail(props: ProductDetailProps) {
   };
 
   return (
-    <section className="pt-24 pb-80">
-      <h2 className="text-lg font-bold pl-24 pt-12">{`${findCategory()} > ${
-        data.title
-      }`}</h2>
-      <section className="flex items-center w-full h-80 gap-36 pl-24 mt-24">
-        <img
-          style={{ maxWidth: "100%", maxHeight: "100%" }}
-          src={data.image}
-          alt=""
-        />
-        <div className="w-2/4 flex flex-col gap-5">
-          <p className="text-lg font-bold">{data.title}</p>
-          <p className="leading-normal">{data.description}</p>
+    <>
+      {loading && <ProductDetailSkeletonCard />}
+      {!loading && (
+        <section className="pt-24 pb-80">
+          <h2 className="text-lg font-bold pl-24 pt-12">{`${findCategory()} > ${
+            data.title
+          }`}</h2>
+          <section className="flex items-center w-full h-80 gap-36 pl-24 mt-24">
+            <img
+              style={{ maxWidth: "100%", maxHeight: "100%" }}
+              src={data.image}
+              alt=""
+            />
+            <div className="w-2/4 flex flex-col gap-5">
+              <p className="text-lg font-bold">{data.title}</p>
+              <p className="leading-normal">{data.description}</p>
 
-          <div className="flex items-center">
-            {starArr.map((el, idx) => {
-              return (
-                <FaStar
-                  key={idx}
-                  size="20"
-                  className={clicked[idx] && "text-yellow-500"}
-                />
-              );
-            })}
-            <span className="ml-4">
-              {data.rating.rate} / {data.rating.count}명 참여
-            </span>
-          </div>
+              <div className="flex items-center">
+                {starArr.map((el, idx) => {
+                  return (
+                    <FaStar
+                      key={idx}
+                      size="20"
+                      className={clicked[idx] && "text-yellow-500"}
+                    />
+                  );
+                })}
+                <span className="ml-4">
+                  {data.rating.rate} / {data.rating.count}명 참여
+                </span>
+              </div>
 
-          <p className="text-4xl font-bold">${data.price}</p>
-          <div className="flex gap-5">
-            <button
-              className="text-sm bg-blue-700 hover:bg-blue-900 text-white p-3 rounded"
-              onClick={onButtonClicked}
-            >
-              장바구니에 담기
-            </button>
-            <button
-              className="text-sm p-3 rounded border border-black hover:bg-black hover:text-white"
-              onClick={onButtonClicked}
-            >
-              장바구니로 이동
-            </button>
-          </div>
-        </div>
-      </section>
-    </section>
+              <p className="text-4xl font-bold">${data.price}</p>
+              <div className="flex gap-5">
+                <button
+                  className="text-sm bg-blue-700 hover:bg-blue-900 text-white p-3 rounded"
+                  onClick={onButtonClicked}
+                >
+                  장바구니에 담기
+                </button>
+                <Link
+                  to="/cart"
+                  className="text-sm p-3 rounded border border-black hover:bg-black hover:text-white"
+                >
+                  장바구니로 이동
+                </Link>
+              </div>
+            </div>
+          </section>
+        </section>
+      )}
+    </>
   );
 }
