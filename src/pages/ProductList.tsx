@@ -64,7 +64,7 @@ export default function ProductList(props: ProductListProps) {
 
   return (
     <>
-      <div className="pt-24">{props.children}</div>
+      <div className="pt-24 mb-24 ml-80 text-lg font-bold">{`홈 > ${props.children}`}</div>
       {loading && <ProductListSkeletonCard />}
       {!loading && (
         <section className="w-3/4 mx-auto">

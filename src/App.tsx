@@ -95,7 +95,10 @@ function App() {
               ))}
 
               <Route path="/cart" element={<Cart />} />
-              <Route path="/product/:productId" element={<ProductDetail />} />
+              <Route
+                path="/product/:productId"
+                element={<ProductDetail categories={categories} />}
+              />
             </Routes>
             <Footer />
           </BrowserRouter>
