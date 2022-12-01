@@ -1,7 +1,7 @@
 import { useState, useMemo, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { debounce } from "lodash";
-import { FaRegMoon, FaRegSun } from "react-icons/fa";
+import { FaRegMoon, FaRegSun, FaShoppingCart } from "react-icons/fa";
 interface Categories {
   path: string;
   name: string;
@@ -73,6 +73,7 @@ export default function Header(props: HeaderProps) {
                     <li key={category.name}>
                       <Link
                         to={category.path}
+                        className="hover:bg-gray-200 p-3 rounded"
                         onCLick={() => console.log("link")}
                       >
                         {category.name}
@@ -138,7 +139,11 @@ export default function Header(props: HeaderProps) {
               </div>
             </li>
             <li>
-              <Link to="/cart">cart</Link>
+              <div className="hover:bg-gray-200 p-3 rounded">
+                <Link to="/cart">
+                  <FaShoppingCart />
+                </Link>
+              </div>
             </li>
           </ul>
         </div>
