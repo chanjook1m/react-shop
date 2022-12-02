@@ -2,6 +2,8 @@ import { useState, useMemo, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { debounce } from "lodash";
 import { FaRegMoon, FaRegSun, FaShoppingCart } from "react-icons/fa";
+import { useRecoilState } from "recoil";
+import { cartAtom } from "../../atoms";
 interface Categories {
   path: string;
   name: string;
@@ -31,6 +33,13 @@ export default function Header(props: HeaderProps) {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
+  const [cart, setCart] = useRecoilState(cartAtom);
+
+  const getTotalQuantity = () => {
+    return cart.reduce((acc, cur) => {
+      return acc + cur.quantity;
+    }, 0);
+  };
 
   const debouncedSearch = useMemo(
     () =>
@@ -62,9 +71,11 @@ export default function Header(props: HeaderProps) {
     <header className="w-full fixed top-0 left-0 h-16 shadow z-10 bg-white font-bold text-black">
       <div className="w-11/12 h-full flex max-w-screen-xl justify-between my-0 mx-auto items-center">
         <div className="header-left flex space-x-6">
+          {/* Logo */}
           <div>
             <Link to="/">React Shop</Link>
           </div>
+          {/* NavigationCategory */}
           <nav>
             <ul className="flex space-x-4">
               {props.categories.map((category) => {
@@ -85,6 +96,7 @@ export default function Header(props: HeaderProps) {
           </nav>
         </div>
         <div className="header-right">
+          {/* HeaderMenu */}
           <ul className="flex space-x-4 items-center">
             <li>
               <button>
@@ -142,6 +154,7 @@ export default function Header(props: HeaderProps) {
               <div className="hover:bg-gray-200 p-3 rounded">
                 <Link to="/cart">
                   <FaShoppingCart />
+                  <span>{getTotalQuantity()}</span>
                 </Link>
               </div>
             </li>
