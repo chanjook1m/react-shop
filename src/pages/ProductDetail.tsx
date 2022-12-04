@@ -1,22 +1,15 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import { useRecoilState } from "recoil";
-import { cartAtom } from "../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { cartAtom, categoriesAtom } from "../atoms";
 
 import ProductDetailSkeletonCard from "../components/skeleton/ProductDetailSkeletonCard";
 
 import { FaStar } from "react-icons/fa";
 
-interface Categories {
-  path: string;
-  name: string;
-  keyword?: string;
-}
-
 type ProductDetailProps = {
   children?: React.ReactNode;
-  categories: Categories[];
 };
 
 interface ProductInfo {
@@ -54,6 +47,7 @@ export default function ProductDetail(props: ProductDetailProps) {
     rating: { rate: 0, count: 0 },
   });
   const [cart, setCart] = useRecoilState(cartAtom);
+  const categories = useRecoilValue(categoriesAtom);
   const [clicked, setClicked] = useState(new Array(STAR_NUM).fill(false));
   const [loading, setLoading] = useState(false);
 
@@ -137,7 +131,7 @@ export default function ProductDetail(props: ProductDetailProps) {
 
   const findCategory = () => {
     let category = "";
-    props.categories.forEach((ele) => {
+    categories.forEach((ele) => {
       if (data.category.indexOf(ele.keyword as string) >= 0) {
         category = ele.name;
       }

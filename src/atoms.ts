@@ -9,6 +9,12 @@ interface CartItemInfo {
   image: string;
 }
 
+interface CategoryInfo {
+  path: string;
+  name: string;
+  keyword: string;
+}
+
 const localStorageEffect =
   (key: string) =>
   ({ setSelf, onSet }: any) => {
@@ -30,4 +36,13 @@ export const cartAtom = atom<CartItemInfo[]>({
   key: "cart",
   default: [],
   effects: [localStorageEffect("cart_list")],
+});
+
+export const categoriesAtom = atom<CategoryInfo[]>({
+  key: "categories",
+  default: [
+    { path: "/fashion", name: "패션", keyword: "clothing" },
+    { path: "/accessory", name: "엑세서리", keyword: "jewelery" },
+    { path: "/digital", name: "디지털", keyword: "electronics" },
+  ],
 });

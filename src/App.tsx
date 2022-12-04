@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import { RecoilRoot } from "recoil";
+import { useRecoilValue } from "recoil";
+import { categoriesAtom } from "./atoms";
 
-import Header from "./components/common/Header";
+import Header from "./components/common/header/Header";
 import Footer from "./components/common/Footer";
 import { createGlobalStyle } from "styled-components";
 import Main from "./pages/Main";
@@ -12,12 +13,6 @@ import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 
 import SkeletonCard from "./components/skeleton/MainSkeletonCard";
-
-const categories = [
-  { path: "/fashion", name: "패션", keyword: "clothing" },
-  { path: "/accessory", name: "엑세서리", keyword: "jewelery" },
-  { path: "/digital", name: "디지털", keyword: "electronics" },
-];
 
 const API_URL = "https://fakestoreapi.com/products/category";
 const LOGIN_API_URL = "https://fakestoreapi.com/auth/login";
@@ -35,7 +30,7 @@ interface ProductInfo {
 function App() {
   const [data, setData] = useState<ProductInfo[]>([]);
   const [loading, setLoading] = useState(false);
-
+  const categories = useRecoilValue(categoriesAtom);
   const getLimitedData = (category: string, num: number) => {
     let ctgry = category === "clothing" ? "men's clothing" : category;
     fetch(`${API_URL}/${ctgry}?limit=${num}`)
@@ -68,43 +63,33 @@ function App() {
   }, []);
 
   return (
-    <RecoilRoot>
-      <div className="w-full">
-        <GlobalStyle />
-        <div className="App">
-          <BrowserRouter>
-            <Header categories={categories} />
-            <Routes>
-              {loading && <Route path="/" element={<SkeletonCard />} />}
-              {!loading && (
-                <Route
-                  path="/"
-                  element={<Main categories={categories} data={data} />}
-                />
-              )}
+    <div className="w-full">
+      <GlobalStyle />
+      <div className="App">
+        <BrowserRouter>
+          <Header categories={categories} />
+          <Routes>
+            {loading && <Route path="/" element={<SkeletonCard />} />}
+            {!loading && <Route path="/" element={<Main data={data} />} />}
 
-              {categories.map((category) => (
-                <Route
-                  path={category.path}
-                  element={
-                    <ProductList category={category.keyword}>
-                      {category.name}
-                    </ProductList>
-                  }
-                />
-              ))}
-
-              <Route path="/cart" element={<Cart />} />
+            {categories.map((category) => (
               <Route
-                path="/product/:productId"
-                element={<ProductDetail categories={categories} />}
+                path={category.path}
+                element={
+                  <ProductList category={category.keyword}>
+                    {category.name}
+                  </ProductList>
+                }
               />
-            </Routes>
-            <Footer />
-          </BrowserRouter>
-        </div>
+            ))}
+
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/product/:productId" element={<ProductDetail />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
       </div>
-    </RecoilRoot>
+    </div>
   );
 }
 

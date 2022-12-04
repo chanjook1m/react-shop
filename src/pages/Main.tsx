@@ -2,12 +2,8 @@ import { Link } from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import "./newCarouselStyle.css";
 import { Carousel } from "react-responsive-carousel";
-
-interface Categories {
-  path: string;
-  name: string;
-  keyword?: string;
-}
+import { useRecoilValue } from "recoil";
+import { categoriesAtom } from "../atoms";
 
 interface ProductInfo {
   id: number;
@@ -21,13 +17,13 @@ interface ProductInfo {
 
 type MainProps = {
   children?: React.ReactNode;
-  categories: Categories[];
   data: ProductInfo[];
 };
 
 const API_URL = "https://fakestoreapi.com/products";
 
 export default function Main(props: MainProps) {
+  const categories = useRecoilValue(categoriesAtom);
   return (
     <main className="pt-12 w-full object-contain">
       {/* 캐러셀 섹션 */}
@@ -90,7 +86,7 @@ export default function Main(props: MainProps) {
 
       {/* 프로덕트 카드 섹션 */}
       <section className="w-3/4 mx-auto ">
-        {props.categories.map((category) => (
+        {categories.map((category) => (
           <section key={category.name}>
             <h2 className="flex justify-center text-3xl font-bold pt-24 mb-5 pr-5">
               {category.name}
