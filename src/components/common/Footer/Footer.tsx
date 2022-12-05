@@ -16,7 +16,9 @@ export default function Footer(props: FooterProps) {
   return (
     <footer className="flex justify-center h-24 pt-80 ">
       <div className="w-full h-80 flex items-center flex-col pt-16 gap-10 text-lg font-bold bg-gray-300">
+        {/* Company */}
         <div>제로베이스</div>
+        {/* PaymentCards */}
         <div>
           <ul className="flex gap-3">
             <li>
@@ -30,6 +32,7 @@ export default function Footer(props: FooterProps) {
             </li>
           </ul>
         </div>
+        {/* SocialNetwork */}
         <div>
           <ul className="flex gap-5">
             <li>
@@ -49,6 +52,7 @@ export default function Footer(props: FooterProps) {
             </li>
           </ul>
         </div>
+        {/* CopyRight */}
         <div>Copyright© 2022</div>
       </div>
     </footer>

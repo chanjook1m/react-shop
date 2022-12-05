@@ -156,8 +156,10 @@ export default function Cart(props: CartProps) {
       {!loading && (
         <section className="pt-24">
           <section className="flex w-3/4 gap-36 pl-24 mt-24">
+            {/* CartContainer */}
             <ul>
               {cart.map((ele) => (
+                // CartItem
                 <li key={ele.id}>
                   <div className="flex items-center gap-24">
                     <Link
