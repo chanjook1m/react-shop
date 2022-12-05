@@ -13,10 +13,12 @@ function Cart() {
   };
 
   return (
-    <div className="hover:bg-gray-200 p-3 rounded">
-      <Link to="/cart">
+    <div className="hover:bg-gray-200 p-1 rounded flex">
+      <Link className="p-2" to="/cart">
         <FaShoppingCart />
-        <span>{getTotalQuantity()}</span>
+        <span className="absolute top-3 right-12 rounded-3xl px-1.5 text-sm text-white bg-red-500">
+          {getTotalQuantity()}
+        </span>
       </Link>
     </div>
   );
