@@ -12,7 +12,11 @@ function ProductListContainer({ children }: ProductListContainerProps) {
 }
 
 function Title({ children }: any) {
-  return <div className="pt-24 mb-24 ml-80 text-lg font-bold">{children}</div>;
+  return (
+    <div className="pt-24 mb-24 ml-80 text-lg font-bold dark:text-white">
+      {children}
+    </div>
+  );
 }
 
 function ProductList({ children }: any) {

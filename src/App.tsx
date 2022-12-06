@@ -31,6 +31,7 @@ function App() {
   const [data, setData] = useState<ProductInfo[]>([]);
   const [loading, setLoading] = useState(false);
   const categories = useRecoilValue(categoriesAtom);
+
   const getLimitedData = (category: string, num: number) => {
     let ctgry = category === "clothing" ? "men's clothing" : category;
     fetch(`${API_URL}/${ctgry}?limit=${num}`)

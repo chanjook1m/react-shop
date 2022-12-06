@@ -13,8 +13,8 @@ function Cart() {
   };
 
   return (
-    <div className="hover:bg-gray-200 p-1 rounded flex">
-      <Link className="p-2" to="/cart">
+    <div className="hover:bg-gray-100 px-3 rounded">
+      <Link className="px-5" to="/cart">
         <FaShoppingCart />
         <span className="relative bottom-6 left-2 rounded-3xl px-1.5 text-sm text-white bg-red-500">
           {getTotalQuantity()}

@@ -23,7 +23,7 @@ export default function Header(props: HeaderProps) {
       <div className="header-right">
         <ul className="flex space-x-4 items-center">
           <li>
-            <Button type="darkmode" />
+            <Button type="theme" />
           </li>
           <li>
             <Search />
@@ -39,7 +39,7 @@ export default function Header(props: HeaderProps) {
 
 function HeaderContainer({ children }: any) {
   return (
-    <header className="w-full fixed top-0 left-0 h-16 shadow z-10 bg-white font-bold text-black">
+    <header className="w-full fixed top-0 left-0 h-16 shadow z-10 bg-white font-bold text-black dark:bg-gray-800 dark:text-white">
       <div className="w-11/12 h-full flex max-w-screen-xl justify-between my-0 mx-auto items-center">
         {children}
       </div>

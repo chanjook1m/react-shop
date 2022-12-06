@@ -1,5 +1,7 @@
 import React from "react";
 import { FaRegMoon, FaRegSun } from "react-icons/fa";
+import { useRecoilState } from "recoil";
+import { themeAtom } from "../../../atoms";
 
 type ButtonProps = {
   children?: React.ReactNode;
@@ -8,15 +10,27 @@ type ButtonProps = {
 
 function Button({ type }: ButtonProps) {
   let content;
+
+  const [theme, setTheme] = useRecoilState(themeAtom);
+
+  const handleButtonClick = () => {
+    theme === "light" ? setTheme("dark") : setTheme("light");
+    if (localStorage.theme.replaceAll('"', "") === "dark") {
+      console.log("add");
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
+
   switch (type) {
-    case "darkmode":
-      // 전역 변수에 따라서 아이콘 변경
-      content = <FaRegMoon />;
+    case "theme":
+      content = theme === "light" ? <FaRegMoon /> : <FaRegSun />;
       break;
     default:
       break;
   }
-  return <button>{content}</button>;
+  return <button onClick={handleButtonClick}>{content}</button>;
 }
 
 export default Button;

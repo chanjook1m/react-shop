@@ -46,3 +46,9 @@ export const categoriesAtom = atom<CategoryInfo[]>({
     { path: "/digital", name: "디지털", keyword: "electronics" },
   ],
 });
+
+export const themeAtom = atom<string>({
+  key: "theme",
+  default: "light",
+  effects: [localStorageEffect("theme")],
+});
