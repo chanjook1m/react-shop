@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Pagination from "react-js-pagination";
+import "./Paging.css";
 
 interface ProductListContainerProps {
   children?: React.ReactNode;
 }
 
 function ProductListContainer({ children }: ProductListContainerProps) {
-  return <div>{children}</div>;
+  return <div className="pb-80 dark:bg-gray-500">{children}</div>;
 }
 
 function Title({ children }: any) {
@@ -38,18 +40,19 @@ interface ProductItemProps {
 function ProductItem({ children, item }: ProductItemProps) {
   return (
     <Link
-      className="flex xl:w-64 lg:w-48 h-96 flex-col items-center justify-center border border-b border-[lightgray] border-solid rounded-lg"
+      className="flex xl:w-64 lg:w-48 h-96 flex-col items-center justify-center border border-b border-[lightgray] border-solid rounded-lg dark:border-gray-700"
       to={`/product/${item.id}`}
       key={item.id}
     >
-      <figure className="w-full h-96 flex items-center justify-center hover:scale-125 duration-500">
+      <figure className="w-full h-96 flex items-center justify-center dark:bg-white">
         <img
+          className="hover:scale-125 duration-500"
           src={item.image}
           alt=""
           style={{ maxWidth: "50%", maxHeight: "50%" }}
         />
       </figure>
-      <div className="flex flex-col justify-between w-full h-64 leading-normal p-3 bg-[lightgray]">
+      <div className="flex flex-col justify-between w-full h-64 leading-normal p-3 bg-[lightgray] dark:bg-gray-700 dark:text-white">
         <p className="font-black">{item.title}</p>
         <p>${item.price}</p>
       </div>
@@ -57,8 +60,23 @@ function ProductItem({ children, item }: ProductItemProps) {
   );
 }
 
+function Paging({ children, page, count, setPage, limit }: any) {
+  return (
+    <Pagination
+      activePage={page}
+      itemsCountPerPage={limit}
+      totalItemsCount={count}
+      pageRangeDisplayed={5}
+      prevPageText={"<"}
+      nextPageText={">"}
+      onChange={setPage}
+    />
+  );
+}
+
 ProductListContainer.Title = Title;
 ProductListContainer.ProductList = ProductList;
 ProductListContainer.ProductItem = ProductItem;
+ProductListContainer.Paging = Paging;
 
 export default ProductListContainer;
