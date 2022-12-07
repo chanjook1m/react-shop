@@ -1,3 +1,4 @@
+import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { useRecoilValue } from "recoil";
@@ -7,9 +8,9 @@ import Header from "./components/common/header/Header";
 import Footer from "./components/common/Footer/Footer";
 import { createGlobalStyle } from "styled-components";
 import Main from "./pages/Main";
-import ProductList from "./pages/ProductList";
-import ProductDetail from "./pages/ProductDetail";
-import Cart from "./pages/Cart";
+const ProductList = React.lazy(() => import("./pages/ProductList"));
+const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
+const Cart = React.lazy(() => import("./pages/Cart"));
 
 import SkeletonCard from "./components/skeleton/MainSkeletonCard";
 import useLimitedFetch from "./hooks/useLimitedFetch";
@@ -32,15 +33,31 @@ function App() {
               <Route
                 path={category.path}
                 element={
-                  <ProductList category={category.keyword}>
-                    {category.name}
-                  </ProductList>
+                  <Suspense fallback="loading...">
+                    <ProductList category={category.keyword}>
+                      {category.name}
+                    </ProductList>
+                  </Suspense>
                 }
               />
             ))}
 
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/product/:productId" element={<ProductDetail />} />
+            <Route
+              path="/cart"
+              element={
+                <Suspense fallback="loading...">
+                  <Cart />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/product/:productId"
+              element={
+                <Suspense fallback="loading...">
+                  <ProductDetail />
+                </Suspense>
+              }
+            />
           </Routes>
           <Footer />
         </BrowserRouter>

@@ -3,6 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import "./newCarouselStyle.css";
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function MainContainer({ children }: any) {
   return (
@@ -39,7 +40,14 @@ function CarouselItem({ children, to, title, desc, img }: any) {
           </Link>
         </p>
       </div>
-      <img src={img} style={{ objectFit: "contain" }} />
+
+      <LazyLoadImage
+        width=""
+        height=""
+        src={img}
+        alt="상품"
+        style={{ objectFit: "contain" }}
+      />
     </div>
   );
 }
@@ -64,10 +72,12 @@ function ProductItem({ children, item }: any) {
       key={item.id}
     >
       <figure className="w-full h-96 flex items-center justify-center  dark:bg-white">
-        <img
+        <LazyLoadImage
           className="hover:scale-125 duration-500"
+          width=""
+          height=""
           src={item.image}
-          alt=""
+          alt="사진"
           style={{ maxWidth: "50%", maxHeight: "50%" }}
         />
       </figure>
