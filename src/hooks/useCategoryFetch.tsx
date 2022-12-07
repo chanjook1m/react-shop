@@ -1,17 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ProductInfo } from "product";
 
 const API_URL = "https://fakestoreapi.com/products/category";
-
-interface ProductInfo {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating?: object;
-}
 
 const useCategoryFetch = (category: string) => {
   const [data, setData] = useState<ProductInfo[]>([]);

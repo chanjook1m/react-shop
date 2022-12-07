@@ -2,16 +2,7 @@ const API_URL = "https://fakestoreapi.com/products/category";
 import { useState, useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import { categoriesAtom } from "../atoms";
-
-interface ProductInfo {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating?: object;
-}
+import { ProductInfo } from "product";
 
 const useLimitedFetch = () => {
   const [data, setData] = useState<ProductInfo[]>([]);

@@ -4,6 +4,7 @@ import ProductListSkeletonCard from "../components/skeleton/ProductListSkeleton"
 
 import ProductListContainer from "../components/ProductList/ProductListContainer";
 import useCategoryFetch from "../hooks/useCategoryFetch";
+
 type ProductListProps = {
   children?: React.ReactNode;
   category: string;

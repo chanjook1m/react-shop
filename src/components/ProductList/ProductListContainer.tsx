@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import "./Paging.css";
+import { ItemInfo } from "product";
 
 interface ProductListContainerProps {
   children?: React.ReactNode;
@@ -27,13 +28,6 @@ function ProductList({ children }: any) {
       </div>
     </section>
   );
-}
-
-interface ItemInfo {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
 }
 
 interface ProductItemProps {

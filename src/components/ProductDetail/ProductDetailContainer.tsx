@@ -3,18 +3,10 @@ import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { cartAtom } from "../../atoms";
+import { CartItemInfo } from "product";
 
 interface ProductDetailContainerProps {
   children?: React.ReactNode;
-}
-
-interface CartItemInfo {
-  id: number;
-  title: string;
-  price: number;
-  quantity: number;
-  date: string;
-  image: string;
 }
 
 const STAR_NUM = 5;

@@ -1,17 +1,7 @@
 import { useEffect, useState } from "react";
 import { STAR_NUM } from "../shared/constants";
-
+import { ProductInfo } from "product";
 const API_URL = "https://fakestoreapi.com/products";
-
-interface ProductInfo {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: { rate: number; count: number };
-}
 
 const useProductFetch = (productId: string) => {
   const [clicked, setClicked] = useState(new Array(STAR_NUM).fill(false));
