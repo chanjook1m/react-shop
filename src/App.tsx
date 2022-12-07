@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { useRecoilValue } from "recoil";
@@ -13,55 +12,11 @@ import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 
 import SkeletonCard from "./components/skeleton/MainSkeletonCard";
-
-const API_URL = "https://fakestoreapi.com/products/category";
-const LOGIN_API_URL = "https://fakestoreapi.com/auth/login";
-
-interface ProductInfo {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating?: object;
-}
+import useLimitedFetch from "./hooks/useLimitedFetch";
 
 function App() {
-  const [data, setData] = useState<ProductInfo[]>([]);
-  const [loading, setLoading] = useState(false);
   const categories = useRecoilValue(categoriesAtom);
-
-  const getLimitedData = (category: string, num: number) => {
-    let ctgry = category === "clothing" ? "men's clothing" : category;
-    fetch(`${API_URL}/${ctgry}?limit=${num}`)
-      .then((res) => res.json())
-      .then((newData) => {
-        setData((prev) => [...prev, ...newData].sort((a, b) => a.id - b.id));
-        setTimeout(() => setLoading(false), 1000);
-      })
-      .catch((err) => console.log(err));
-  };
-  console.log(data);
-
-  const login = () => {
-    fetch(`${LOGIN_API_URL}`, {
-      method: "POST",
-      body: JSON.stringify({
-        username: "johnd",
-        password: "m38rmF$",
-      }),
-    })
-      .then((res) => res.json())
-      .then((json) => console.log(json))
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    setLoading(true);
-    categories.map((category) => getLimitedData(category.keyword, 4));
-    // login();
-  }, []);
+  const { data, loading } = useLimitedFetch();
 
   return (
     <div className="w-full">

@@ -1,3 +1,4 @@
+import React from "react";
 import { useRecoilValue } from "recoil";
 import { categoriesAtom } from "../../../atoms";
 
@@ -11,7 +12,7 @@ type HeaderProps = {
   children?: React.ReactNode;
 };
 
-export default function Header(props: HeaderProps) {
+function Header(props: HeaderProps) {
   const categories = useRecoilValue(categoriesAtom);
 
   return (
@@ -46,3 +47,5 @@ function HeaderContainer({ children }: any) {
     </header>
   );
 }
+
+export default React.memo(Header);
