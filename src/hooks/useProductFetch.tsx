@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import { STAR_NUM } from "../shared/constants";
 
-const STAR_NUM = 5;
 const API_URL = "https://fakestoreapi.com/products";
 
 interface ProductInfo {

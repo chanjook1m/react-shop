@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { cartAtom } from "../../atoms";
+import { getTotalPrice } from "../../shared/utils";
 
 function CartContainer({ children }: any) {
   return <div className="dark:bg-gray-500 dark:text-white">{children}</div>;
@@ -143,17 +144,9 @@ function CartItem({ children, item }: any) {
 }
 function CartTotal({ children }: any) {
   const [cart, setCart] = useRecoilState(cartAtom);
-  const getTotalPrice = () => {
-    return cart
-      .reduce((acc, cur) => {
-        return acc + cur.price * cur.quantity;
-      }, 0)
-      .toFixed(2);
-  };
 
   return (
     <div className="h-full w-1/4 pt-24 text-2xl font-bold">
-      {/* <p>total: {getTotalQuantity()} </p> */}
       <p>총 : ${getTotalPrice()} </p>
       <button
         className="mt-4 bg-blue-700 p-3 text-white rounded hover:bg-blue-900"
