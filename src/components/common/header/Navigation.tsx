@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-type NavigationProps = {
-  children?: React.ReactNode;
-  options: Category[];
-};
-
 interface Category {
   path: string;
   name: string;
   keyword: string;
 }
+
+type NavigationProps = {
+  children?: React.ReactNode;
+  options: Category[];
+};
 
 function Navigation({ options }: NavigationProps) {
   return (

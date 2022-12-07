@@ -18,8 +18,8 @@ export default function Header(props: HeaderProps) {
   return (
     <HeaderContainer>
       <div className="header-left flex space-x-6">
-        <Logo title="React Shop" />
-        <Navigation options={categories} />
+        {/* <Logo title="React Shop" /> */}
+        {/* <Navigation options={categories} /> */}
       </div>
       <div className="header-right">
         <ul className="flex space-x-4 items-center">
