@@ -1,23 +1,23 @@
 import React from "react";
-import { useRecoilValue } from "recoil";
-import { categoriesAtom } from "../../../atoms";
+// import { useRecoilValue } from "recoil";
+// import { categoriesAtom } from "../../../atoms";
 
-import Logo from "./Logo";
-import Navigation from "./Navigation";
-import Button from "./Button";
-import Cart from "./Cart";
-import Search from "./Search";
+// import Logo from "./Logo";
+// import Navigation from "./Navigation";
+// import Button from "./Button";
+// import Cart from "./Cart";
+// import Search from "./Search";
 
 type HeaderProps = {
   children?: React.ReactNode;
 };
 
-export default function Header(props: HeaderProps): React.ReactNode {
-  const categories = useRecoilValue(categoriesAtom);
+export default function Header(props: HeaderProps) {
+  // const categories = useRecoilValue(categoriesAtom);
 
   return (
     <HeaderContainer>
-      <div className="header-left flex space-x-6">
+      {/* <div className="header-left flex space-x-6">
         <Logo title="React Shop" />
         <Navigation options={categories} />
       </div>
@@ -33,7 +33,7 @@ export default function Header(props: HeaderProps): React.ReactNode {
             <Cart />
           </li>
         </ul>
-      </div>
+      </div> */}
     </HeaderContainer>
   );
 }
