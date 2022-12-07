@@ -12,7 +12,7 @@ type HeaderProps = {
   children?: React.ReactNode;
 };
 
-export default function Header(props: HeaderProps) {
+export default function Header(props: HeaderProps): JSX.Element {
   const categories = useRecoilValue(categoriesAtom);
 
   return (
