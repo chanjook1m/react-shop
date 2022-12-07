@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { getTotalQuantity } from "../../../shared/utils";
 
-function Cart() {
+type CartProps = {
+  children?: React.ReactNode;
+};
+
+function Cart({ children }: CartProps) {
   return (
     <div className="hover:bg-gray-100 px-3 rounded">
       <Link className="px-5" to="/cart">

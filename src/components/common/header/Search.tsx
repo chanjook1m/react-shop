@@ -14,7 +14,11 @@ interface ProductInfo {
 
 const API_URL = "https://fakestoreapi.com/products";
 
-function Search() {
+type SearchProps = {
+  children?: React.ReactNode;
+};
+
+function Search({ children }: SearchProps) {
   const [data, setData] = useState<ProductInfo[]>([]);
   const [query, setQuery] = useState<string>("");
   const [show, setShow] = useState(false);
