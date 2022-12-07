@@ -3,7 +3,7 @@ import "./App.css";
 import { useRecoilValue } from "recoil";
 import { categoriesAtom } from "./atoms";
 
-// import Header from "./components/common/Header/Header";
+import Header from "./components/common/Header/Header";
 import Footer from "./components/common/Footer/Footer";
 import { createGlobalStyle } from "styled-components";
 import Main from "./pages/Main";
@@ -23,7 +23,7 @@ function App() {
       <GlobalStyle />
       <div className="App">
         <BrowserRouter>
-          {/* <Header /> */}
+          <Header />
           <Routes>
             {loading && <Route path="/" element={<SkeletonCard />} />}
             {!loading && <Route path="/" element={<Main data={data} />} />}
