@@ -144,9 +144,11 @@ function CartItem({ children, item }: any) {
 function CartTotal({ children }: any) {
   const [cart, setCart] = useRecoilState(cartAtom);
   const getTotalPrice = () => {
-    return cart.reduce((acc, cur) => {
-      return acc + cur.price * cur.quantity;
-    }, 0);
+    return cart
+      .reduce((acc, cur) => {
+        return acc + cur.price * cur.quantity;
+      }, 0)
+      .toFixed(2);
   };
 
   return (
