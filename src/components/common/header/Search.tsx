@@ -35,7 +35,7 @@ function Search() {
             console.log(data);
             setData(data);
           });
-      }, 200),
+      }, 0),
     [query]
   );
 
@@ -72,7 +72,7 @@ function Search() {
             data &&
             data.map(
               (ele) =>
-                ele.title.indexOf(query) >= 0 && (
+                ele.title.toLowerCase().indexOf(query.toLowerCase()) >= 0 && (
                   <li
                     key={ele.title}
                     className="p-5 hover:bg-[lightgray] rounded"
