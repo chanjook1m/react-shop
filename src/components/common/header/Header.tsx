@@ -22,7 +22,7 @@ export default function Header(props: HeaderProps) {
         {/* <Navigation options={categories} /> */}
       </div>
       <div className="header-right">
-        <ul className="flex space-x-4 items-center">
+        {/* <ul className="flex space-x-4 items-center">
           <li>
             <Button type="theme" />
           </li>
@@ -32,7 +32,7 @@ export default function Header(props: HeaderProps) {
           <li>
             <Cart />
           </li>
-        </ul>
+        </ul> */}
       </div>
     </HeaderContainer>
   );
