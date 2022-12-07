@@ -4,7 +4,7 @@ import { useRecoilValue } from "recoil";
 import { categoriesAtom } from "./atoms";
 
 // import Header from "./components/common/Header/Header";
-import Footer from "./components/common/Footer/Footer";
+// import Footer from "./components/common/Footer/Footer";
 import { createGlobalStyle } from "styled-components";
 import Main from "./pages/Main";
 import ProductList from "./pages/ProductList";
@@ -42,7 +42,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/product/:productId" element={<ProductDetail />} />
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </BrowserRouter>
       </div>
     </div>
