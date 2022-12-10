@@ -53,7 +53,11 @@ function CarouselItem({ children, to, title, desc, img }: any) {
 }
 
 function ProductList({ children }: any) {
-  return <section className="w-3/4 mx-auto">{children}</section>;
+  return (
+    <section data-testid="product" className="w-3/4 mx-auto">
+      {children}
+    </section>
+  );
 }
 
 function ListTitle({ children }: any) {

@@ -31,7 +31,7 @@ function Button({ type }: ButtonProps) {
       break;
   }
   return (
-    <button name="theme-button" onClick={handleButtonClick}>
+    <button aria-label="theme-button" onClick={handleButtonClick}>
       {content}
     </button>
   );

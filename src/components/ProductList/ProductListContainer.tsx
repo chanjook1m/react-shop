@@ -41,9 +41,8 @@ function ProductItem({ children, item }: ProductItemProps) {
     <Link
       className="flex xl:w-64 lg:w-48 h-96 flex-col items-center justify-center border border-b border-[lightgray] border-solid rounded-lg dark:border-gray-700"
       to={`/product/${item.id}`}
-      key={item.id}
     >
-      <figure className="w-full h-96 flex items-center justify-center dark:bg-white">
+      <figure className="w-full h-96 flex items-center justify-center dark:bg-white ">
         <LazyLoadImage
           className="hover:scale-125 duration-500"
           width=""

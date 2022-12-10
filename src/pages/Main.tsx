@@ -1,17 +1,8 @@
 import { useRecoilValue } from "recoil";
 import { categoriesAtom } from "../atoms";
+import { ProductInfo } from "product";
 
 import MainContainer from "../components/Main/MainContainer";
-
-interface ProductInfo {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating?: object;
-}
 
 type MainProps = {
   children?: React.ReactNode;
@@ -44,13 +35,13 @@ export default function Main(props: MainProps) {
       </MainContainer.CarouselList>
 
       <MainContainer.ProductList>
-        {categories.map((category) => (
+        {categories.map((category, idx) => (
           <section key={category.name}>
             <MainContainer.ListTitle>{category.name}</MainContainer.ListTitle>
             <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-12 w-full">
-              {props.data.map((item) => {
+              {props.data.map((item, idx) => {
                 if (item.category.indexOf(category.keyword as string) >= 0) {
-                  return <MainContainer.ProductItem item={item} />;
+                  return <MainContainer.ProductItem key={idx} item={item} />;
                 }
               })}
             </div>

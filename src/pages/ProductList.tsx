@@ -13,6 +13,7 @@ type ProductListProps = {
 export default function ProductList(props: ProductListProps) {
   const [page, setPage] = useState(1);
   const { data, loading } = useCategoryFetch(props.category);
+
   const limit = 4;
   const offset = (page - 1) * limit;
   const location = useLocation();
@@ -28,7 +29,7 @@ export default function ProductList(props: ProductListProps) {
       {!loading && (
         <ProductListContainer.ProductList>
           {data.slice(offset, offset + limit).map((item) => (
-            <ProductListContainer.ProductItem item={item} />
+            <ProductListContainer.ProductItem key={item.title} item={item} />
           ))}
         </ProductListContainer.ProductList>
       )}

@@ -9,8 +9,11 @@ export default function ProductListSkeletonCard() {
       {/* <div className="pt-24"></div> */}
       <section className="w-3/4 mx-auto">
         <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-12 w-full">
-          {tempArr.map((ele) => (
-            <div className="flex flex-col items-center justify-center">
+          {tempArr.map((ele, idx) => (
+            <div
+              key={idx}
+              className="flex flex-col items-center justify-center"
+            >
               <figure className="w-full h-80 flex items-center justify-center">
                 <Skeleton width={"12rem"} height={"300px"} />
               </figure>
