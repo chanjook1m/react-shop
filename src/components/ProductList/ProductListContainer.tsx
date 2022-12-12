@@ -23,8 +23,8 @@ function Title({ children }: any) {
 
 function ProductList({ children }: any) {
   return (
-    <section className="w-3/4 mx-auto">
-      <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-12 w-full">
+    <section className="w-3/5 mx-auto">
+      <div className="grid w-max md:grid-cols-4 sm:grid-cols-2 gap-12">
         {children}
       </div>
     </section>

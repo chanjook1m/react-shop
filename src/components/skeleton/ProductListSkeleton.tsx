@@ -8,7 +8,7 @@ export default function ProductListSkeletonCard() {
     <>
       {/* <div className="pt-24"></div> */}
       <section className="w-3/4 mx-auto">
-        <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-12 w-full">
+        <div className="grid w-max md:grid-cols-4 sm:grid-cols-2 gap-12 ">
           {tempArr.map((ele, idx) => (
             <div
               key={idx}
