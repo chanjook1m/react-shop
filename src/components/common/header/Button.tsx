@@ -25,7 +25,7 @@ function Button({ type }: ButtonProps) {
 
   switch (type) {
     case "theme":
-      content = theme === "light" ? <FaRegMoon /> : <FaRegSun />;
+      content = theme !== "light" ? <FaRegMoon /> : <FaRegSun />;
       break;
     default:
       break;
