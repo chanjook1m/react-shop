@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import "./Paging.css";
 import { ItemInfo } from "product";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 interface ProductListContainerProps {
   children?: React.ReactNode;
@@ -22,8 +23,8 @@ function Title({ children }: any) {
 
 function ProductList({ children }: any) {
   return (
-    <section className="w-3/4 mx-auto">
-      <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-12 w-full">
+    <section className="w-3/5 mx-auto">
+      <div className="grid w-max md:grid-cols-4 sm:grid-cols-2 gap-12">
         {children}
       </div>
     </section>
@@ -40,13 +41,14 @@ function ProductItem({ children, item }: ProductItemProps) {
     <Link
       className="flex xl:w-64 lg:w-48 h-96 flex-col items-center justify-center border border-b border-[lightgray] border-solid rounded-lg dark:border-gray-700"
       to={`/product/${item.id}`}
-      key={item.id}
     >
-      <figure className="w-full h-96 flex items-center justify-center dark:bg-white">
-        <img
+      <figure className="w-full h-96 flex items-center justify-center dark:bg-white ">
+        <LazyLoadImage
           className="hover:scale-125 duration-500"
+          width=""
+          height=""
           src={item.image}
-          alt=""
+          alt="사진"
           style={{ maxWidth: "50%", maxHeight: "50%" }}
         />
       </figure>

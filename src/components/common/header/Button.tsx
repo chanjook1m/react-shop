@@ -30,7 +30,11 @@ function Button({ type }: ButtonProps) {
     default:
       break;
   }
-  return <button onClick={handleButtonClick}>{content}</button>;
+  return (
+    <button aria-label="theme-button" onClick={handleButtonClick}>
+      {content}
+    </button>
+  );
 }
 
 export default Button;

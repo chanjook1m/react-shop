@@ -10,10 +10,10 @@ type FooterProps = {
 export default function Footer(props: FooterProps) {
   return (
     <FooterContainer>
-      <Company name="제로베이스" />
+      <Company name="김찬주" />
       <PaymentCards />
       <SocialNetwork />
-      <CopyRight year={2023} company="제로베이스" />
+      <CopyRight year={2023} company="김찬주" />
     </FooterContainer>
   );
 }

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { cartAtom } from "../../atoms";
 import { CartItemInfo } from "product";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 interface ProductDetailContainerProps {
   children?: React.ReactNode;
@@ -79,10 +80,12 @@ function ProductInfo({ children, data, star }: any) {
 
   return (
     <section className="flex items-center w-full h-80 gap-36 pl-24 mt-24">
-      <img
+      <LazyLoadImage
         style={{ maxWidth: "100%", maxHeight: "100%" }}
+        width=""
+        height=""
         src={data.image}
-        alt=""
+        alt="이미지"
       />
       <div className="w-2/4 flex flex-col gap-5">
         <p className="text-lg font-bold">{data.title}</p>

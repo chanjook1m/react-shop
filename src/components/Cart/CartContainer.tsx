@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { cartAtom } from "../../atoms";
 import { getTotalPrice } from "../../shared/utils";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function CartContainer({ children }: any) {
   return <div className="dark:bg-gray-500 dark:text-white">{children}</div>;
@@ -97,8 +98,10 @@ function CartItem({ children, item }: any) {
         key={item.id}
       >
         <figure className="w-56 h-80 flex items-center justify-center bg-white rounded-xl m-3">
-          <img
+          <LazyLoadImage
             src={item.image}
+            width=""
+            height=""
             alt="상품"
             style={{ maxWidth: "80%", maxHeight: "80%" }}
           />

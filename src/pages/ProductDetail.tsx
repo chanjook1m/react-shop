@@ -8,6 +8,7 @@ import ProductDetailSkeletonCard from "../components/skeleton/ProductDetailSkele
 import ProductDetailContainer from "../components/ProductDetail/ProductDetailContainer";
 
 import useProductFetch from "../hooks/useProductFetch";
+import { TEST_PRODUCT_ID } from "../shared/constants";
 
 type ProductDetailProps = {
   children?: React.ReactNode;
@@ -15,7 +16,7 @@ type ProductDetailProps = {
 
 export default function ProductDetail(props: ProductDetailProps) {
   const categories = useRecoilValue(categoriesAtom);
-  let productId = useParams().productId;
+  let productId = useParams().productId || TEST_PRODUCT_ID;
   const { data, loading, clicked } = useProductFetch(productId as string);
 
   const findCategory = () => {

@@ -26,8 +26,8 @@ export default function Cart(props: CartProps) {
       {!loading && (
         <CartContainer.CartList>
           <ul>
-            {cart.map((ele) => (
-              <li key={ele.id}>
+            {cart.map((ele, idx) => (
+              <li key={idx}>
                 <CartContainer.CartItem item={ele} />
               </li>
             ))}
